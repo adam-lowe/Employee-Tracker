@@ -27,14 +27,14 @@ CREATE TABLE department (
   PRIMARY KEY (id)
 );
 
-INSERT INTO music (title, artist, genre)
-VALUES ("lemonade", "apple and the fruits", "fruit metal"), ("Coffee fragerance", "Adeliee da lee", "Jazz folk metal"), ("the lub of live", "Adeliee da lee", "country title music"), ("Rolling in the deep", "the Grump", "Scream Singing");
+-- INSERT INTO music (title, artist, genre)
+-- VALUES ("lemonade", "apple and the fruits", "fruit metal"), ("Coffee fragerance", "Adeliee da lee", "Jazz folk metal"), ("the lub of live", "Adeliee da lee", "country title music"), ("Rolling in the deep", "the Grump", "Scream Singing");
 
-UPDATE music 
-SET artist = "apple + fruits"
-WHERE title = "lemonade";
+-- UPDATE music 
+-- SET artist = "apple + fruits"
+-- WHERE title = "lemonade";
 
-DELETE FROM music 
-WHERE artist = 'the Grump';
+-- DELETE FROM music 
+-- WHERE artist = 'the Grump';
 
-SELECT * FROM music
+-- SELECT * FROM music
