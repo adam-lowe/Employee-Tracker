@@ -1,15 +1,15 @@
-DROP DATABASE IF EXISTS music_DB;
+DROP DATABASE IF EXISTS employees_db;
 
-CREATE DATABASE music_DB;
+CREATE DATABASE employees_db;
 
-USE music_DB;
+USE employees_db;
 
 CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   role_id INT,
-  manager_id INT,
+  manager VARCHAR(30),
   PRIMARY KEY (id)
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE role (
   id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR(30),
   salary DECIMAL,
-  department_id INT,
+  department VARCHAR(30),
   PRIMARY KEY (id)
 );
 
@@ -27,8 +27,23 @@ CREATE TABLE department (
   PRIMARY KEY (id)
 );
 
--- INSERT INTO music (title, artist, genre)
--- VALUES ("lemonade", "apple and the fruits", "fruit metal"), ("Coffee fragerance", "Adeliee da lee", "Jazz folk metal"), ("the lub of live", "Adeliee da lee", "country title music"), ("Rolling in the deep", "the Grump", "Scream Singing");
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("John", "Doe", "Sales Lead", "Sales", 100000, "Ashley Rodriguez");
+
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("Mike", "Chan", "Salesperson", "Sales", 80000, "Ashley Rodriguez");
+
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("Ashley", "Rodriguez", "Lead Engineer", "Engineering", 150000, "Ashley Rodriguez");
+
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("Kevin", "Tupik", "Software Engineer", "Engineering", 120000, "Ashley Rodriguez");
+
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("Malia", "Brown", "Accountant", "Finance", 125000, "Ashley Rodriguez");
+
+INSERT INTO music (first_name, last_name, title, department, salary, manager)
+VALUES ("Sarah", "Lourd", "Legal Team Lead", "Legal", 250000, "Ashley Rodriguez");
 
 -- UPDATE music 
 -- SET artist = "apple + fruits"
