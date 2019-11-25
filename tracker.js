@@ -16,11 +16,6 @@ var connection = mysql.createConnection({
   database: "employees_db"
 });
 
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
-});
-
 console.log(
 " ███████╗███╗   ███╗██████╗ ██╗      ██████╗ ██╗   ██╗███████╗███████╗       \n",
     "██╔════╝████╗ ████║██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝██╔════╝██╔════╝        \n",
@@ -61,11 +56,11 @@ function inquirerAction() {
             case "View all employees":
                 viewAll('employ');
                 break;
-            case "View all employees By department":
+            case "View all departments":
                 viewAll('depart');
                 break;
-            case "View all employees By manager":
-                viewAll('manager');
+            case "View all roles":
+                viewAll('roles');
                 break;
             case "Add Employee":
                 add();
@@ -87,21 +82,8 @@ function inquirerAction() {
 }
 
 function viewAll(type) {
-    connection.query(
-        "INSERT INTO auctions SET ?",
-        {
-        item_name: answer.item,
-        category: answer.category,
-        starting_bid: answer.startingBid || 0,
-        highest_bid: answer.startingBid || 0
-        },
-        function(err) {
-        if (err) throw err;
-        console.log("Your auction was created successfully!");
-        start();
-        }
-    );
-      }
+sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", inquirerAction);
+}
 
 function add() {
     
@@ -113,6 +95,15 @@ function remove() {
 
 function update(type) {
     
+}
+
+function sqlQuery(request, cb) {
+    connection.query(request, function(err, res) {
+        if (err) throw err;
+        console.log('\n');
+        console.table(res);
+        cb();
+      });
 }
 // inquirer.prompt([
 //     {
