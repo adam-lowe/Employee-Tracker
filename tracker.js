@@ -2,7 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require("console.table")
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
 
     // Your port; if not 3306
@@ -53,8 +53,11 @@ function inquirerInit() {
     ]).then(function (res) {
         const action = res.action;
         if (action === "Alter Employee List") {
-            let employList = mysql('SELECT first_name,last_name FROM employee');
-            console.log(employList);
+            let objectList = sqlQuery("SELECT first_name,last_name FROM employee");
+            let employList = [];
+            objectList.forEach(object => {
+                employeeList.push(object.first_name + ' ' + object.last_name);
+            });
             inquirer.prompt([
                 {
                     type: "list",
@@ -85,15 +88,15 @@ function viewAll(type) {
     switch (type) {
 
         case 'employ':
-            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;");
+            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true);
             break;
 
         case 'depart':
-            sqlQuery("SELECT * FROM department");
+            sqlQuery("SELECT * FROM department", true);
             break;
 
         case 'roles':
-            sqlQuery("SELECT * FROM role");
+            sqlQuery("SELECT * FROM role", true);
             break;
 
         default:
@@ -121,12 +124,17 @@ function update(type) {
     }
 }
 
-function sqlQuery(request) {
+function sqlQuery(request, doCallback) {
     connection.query(request, function (err, res) {
         if (err) throw err;
         console.log('\n');
-        console.table(res);
-        inquirerInit();
+        if (doCallback === true) {
+            console.table(res);
+            inquirerInit();
+        }
+        else {
+            return res;
+        }
     });
 }
 // inquirer.prompt([
