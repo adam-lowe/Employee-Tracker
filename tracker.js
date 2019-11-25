@@ -98,7 +98,6 @@ function viewAll(type) {
         function(err) {
         if (err) throw err;
         console.log("Your auction was created successfully!");
-        // re-prompt the user for if they want to bid or post
         start();
         }
     );
