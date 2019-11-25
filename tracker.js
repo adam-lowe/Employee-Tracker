@@ -83,7 +83,25 @@ function alterDataInit() {
             ]
         }
     ).then(function (response) {
+       const alterType = response.alter;
 
+       switch (alterType) {
+        case "Remove Employee":
+            alterData('remove');
+            break;
+        case "Add Employee":
+            alterData('add');
+            break;
+        case "Update Employee's Role":
+            alterData('updateRole');
+            break;
+        case "Update Employee's Manager":
+            alterData('updateManager');
+            break;
+        default:
+            console.log("Error: Can't Determine Choice");
+            break;
+    }
         }
     );
 }
