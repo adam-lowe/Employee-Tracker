@@ -3,33 +3,33 @@ const inquirer = require("inquirer");
 const cTable = require("console.table")
 
 var connection = mysql.createConnection({
-  host: "localhost",
+    host: "localhost",
 
-  // Your port; if not 3306
-  port: 3306,
+    // Your port; if not 3306
+    port: 3306,
 
-  // Your username
-  user: "root",
+    // Your username
+    user: "root",
 
-  // Your password
-  password: "rootroot",
-  database: "employees_db"
+    // Your password
+    password: "rootroot",
+    database: "employees_db"
 });
 
 console.log(
-" ███████╗███╗   ███╗██████╗ ██╗      ██████╗ ██╗   ██╗███████╗███████╗       \n",
+    " ███████╗███╗   ███╗██████╗ ██╗      ██████╗ ██╗   ██╗███████╗███████╗       \n",
     "██╔════╝████╗ ████║██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝██╔════╝██╔════╝        \n",
     "█████╗  ██╔████╔██║██████╔╝██║     ██║   ██║ ╚████╔╝ █████╗  █████╗          \n",
     "██╔══╝  ██║╚██╔╝██║██╔═══╝ ██║     ██║   ██║  ╚██╔╝  ██╔══╝  ██╔══╝          \n",
     "███████╗██║ ╚═╝ ██║██║     ███████╗╚██████╔╝   ██║   ███████╗███████╗        \n",
     "╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝        \n",
-                                                                                 "\n",
-     "███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗        \n",
+    "\n",
+    "███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗        \n",
     "████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗       \n",
     "██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝       \n",
     "██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗       \n",
     "██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║       \n",
-     "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝       \n");
+    "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝       \n");
 
 inquirerAction();
 
@@ -60,7 +60,7 @@ function inquirerAction() {
                 viewData('roles');
                 break;
             case "Alter Employee List":
-                alterData();
+                alterDataInit();
                 break;
             default:
                 console.log("Error: Can't Determine Choice");
@@ -69,9 +69,29 @@ function inquirerAction() {
     });
 }
 
+function alterDataInit() {
+    inquirer.prompt(
+        {
+            type: "list",
+            message: "How would you like to alter the employee list?",
+            name: "alter",
+            choices: [
+                "Remove Employee",
+                "Add Employee",
+                "Update Employee's Role",
+                "Update Employee's Manager"
+            ]
+        }
+    ).then(function (response) {
+
+        }
+    );
+}
+
+
 function viewData(type) {
     switch (type) {
-        
+
         case 'employ':
             sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
             break;
@@ -83,18 +103,18 @@ function viewData(type) {
         case 'roles':
             sqlQuery("SELECT * FROM role", true, inquirerAction);
             break;
-    
+
         default:
             break;
     }
 }
 
 function sqlQuery(request, log, cb) {
-    connection.query(request, function(err, res) {
+    connection.query(request, function (err, res) {
         if (err) throw err;
         console.log('\n');
-        if (log) {console.table(res);}
-        if (cb) {cb();}
+        if (log) { console.table(res); }
+        if (cb) { cb(); }
         return res;
-      });
+    });
 }
