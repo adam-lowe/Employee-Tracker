@@ -59,24 +59,61 @@ function inquirerAction() {
         const action = response.action;
         switch (action) {
             case "View all employees":
+                viewAll('employ');
                 break;
             case "View all employees By department":
+                viewAll('depart');
                 break;
             case "View all employees By manager":
+                viewAll('manager');
                 break;
             case "Add Employee":
+                add();
                 break;
             case "Remove Employee":
+                remove();
                 break;
             case "Update Employee Role":
+                update('role');
                 break;
             case "Update Employee Manager":
+                update('manage');
                 break;
             default:
-                console.log("Error: Can't Determine Choice")
+                console.log("Error: Can't Determine Choice");
                 break;
         }
     });
+}
+
+function viewAll(type) {
+    connection.query(
+        "INSERT INTO auctions SET ?",
+        {
+        item_name: answer.item,
+        category: answer.category,
+        starting_bid: answer.startingBid || 0,
+        highest_bid: answer.startingBid || 0
+        },
+        function(err) {
+        if (err) throw err;
+        console.log("Your auction was created successfully!");
+        // re-prompt the user for if they want to bid or post
+        start();
+        }
+    );
+      }
+
+function add() {
+    
+}
+
+function remove() {
+    
+}
+
+function update(type) {
+    
 }
 // inquirer.prompt([
 //     {
