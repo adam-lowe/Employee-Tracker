@@ -1,14 +1,29 @@
-DROP DATABASE IF EXISTS greatBay_DB;
-CREATE DATABASE greatBay_DB;
+DROP DATABASE IF EXISTS music_DB;
 
-USE greatBay_DB;
+CREATE DATABASE music_DB;
 
-CREATE TABLE auctions(
+USE music_DB;
+
+CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT,
-  item_name VARCHAR(100) NOT NULL,
-  category VARCHAR(45) NOT NULL,
-  starting_bid INT default 0,
-  highest_bid INT default 0,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  role_id INT,
+  manager_id INT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE role (
+  id INT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(30),
+  salary DECIMAL,
+  department_id INT,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE department (
+  id INT AUTO_INCREMENT,
+  name VARCHAR(30)
   PRIMARY KEY (id)
 );
 
