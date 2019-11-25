@@ -57,22 +57,22 @@ INSERT INTO role (title, department)
 VALUES ("Legal Team Lead", "Legal");
 
 INSERT INTO employee (first_name, last_name, role, manager)
-VALUES ("John", "Doe", "Sales Lead", "Sales", 100000, "Ashley Rodriguez");
+VALUES ("John", "Doe", "Sales Lead", "Ashley Rodriguez");
 
 INSERT INTO employee (first_name, last_name, role, manager)
-VALUES ("Mike", "Chan", "Salesperson", "Sales", 80000, "John Doe");
+VALUES ("Mike", "Chan", "Salesperson", "John Doe");
 
 INSERT INTO employee (first_name, last_name, role)
-VALUES ("Ashley", "Rodriguez", "Lead Engineer", "Engineering", 150000);
+VALUES ("Ashley", "Rodriguez", "Lead Engineer");
 
 INSERT INTO employee (first_name, last_name, role, manager)
-VALUES ("Kevin", "Tupik", "Software Engineer", "Engineering", 120000, "Ashley Rodriguez");
+VALUES ("Kevin", "Tupik", "Software Engineer", "Ashley Rodriguez");
 
 INSERT INTO employee (first_name, last_name, role)
-VALUES ("Malia", "Brown", "Accountant", "Finance", 125000);
+VALUES ("Malia", "Brown", "Accountant");
 
 INSERT INTO employee (first_name, last_name, role)
-VALUES ("Sarah", "Lourd", "Legal Team Lead", "Legal", 250000);
+VALUES ("Sarah", "Lourd", "Legal Team Lead");
 
 -- UPDATE music 
 -- SET artist = "apple + fruits"
