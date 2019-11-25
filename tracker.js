@@ -47,23 +47,23 @@ function inquirerInit() {
                 "View all employees",
                 "View all departments",
                 "View all roles",
-                "Alter Employee List",
-                "Update Employee List"
+                "Alter Employee List"
             ]
         }
     ]).then(function (res) {
         const action = res.action;
         if (action === "Alter Employee List") {
             let employList = mysql('SELECT first_name,last_name FROM employee');
-
+            console.log(employList);
             inquirer.prompt([
                 {
                     type: "list",
                     message: "Would you like to Add or Remove an Employee?",
-                    name: "addOrRemove",
+                    name: "addRemoveUpdate",
                     choices: [
                         "Add Employee",
-                        "Remove Employee"
+                        "Remove Employee",
+                        "Update Employee List"
                     ]
                 },
                 {
@@ -73,35 +73,7 @@ function inquirerInit() {
                     choices: employList
                 },
             ]).then(function (res) {
-                const action = response.action;
-                if (action === "Add Employee" || "Remove Employee") {inquirerEmploy();}
-                switch (action) {
-                    case "View all employees":
-                        viewAll('employ');
-                        break;
-                    case "View all departments":
-                        viewAll('depart');
-                        break;
-                    case "View all roles":
-                        viewAll('roles');
-                        break;
-                    case "Add Employee":
-                        add();
-                        break;
-                    case "Remove Employee":
-                        remove();
-                        break;
-                    case "Update Employee Role":
-                        update('role');
-                        break;
-                    case "Update Employee Manager":
-                        update('manage');
-                        break;
-                    default:
-                        console.log("Error: Can't Determine Choice");
-                        break;
-                }
-                });
+                
 
             });
         }
@@ -183,3 +155,34 @@ function sqlQuery(request) {
 // });
 // const queryUrl = `https://api.github.com/users/${username}`;
 // axios.get(queryUrl)
+
+// .then(function (response) {
+//     const action = response.action;
+//     if (action === "Add Employee" || "Remove Employee") {inquirerEmploy();}
+//     switch (action) {
+//         case "View all employees":
+//             viewAll('employ');
+//             break;
+//         case "View all departments":
+//             viewAll('depart');
+//             break;
+//         case "View all roles":
+//             viewAll('roles');
+//             break;
+//         case "Add Employee":
+//             add();
+//             break;
+//         case "Remove Employee":
+//             remove();
+//             break;
+//         case "Update Employee Role":
+//             update('role');
+//             break;
+//         case "Update Employee Manager":
+//             update('manage');
+//             break;
+//         default:
+//             console.log("Error: Can't Determine Choice");
+//             break;
+//     }
+// });
