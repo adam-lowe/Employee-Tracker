@@ -1,8 +1,8 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const cTable = require("console.table")
-
-var connection = mysql.createConnection({
+const cTable = require("console.table");
+// sets up connection object
+const connection = mysql.createConnection({
     host: "localhost",
 
     // Your port; if not 3306
@@ -33,7 +33,7 @@ console.log(
 
 inquirerAction();
 
-
+// Function initializes inquirer to ask user what action to take
 function inquirerAction() {
     inquirer.prompt([
         {
@@ -47,6 +47,7 @@ function inquirerAction() {
                 "Alter Employee List"
             ]
         }
+    // function uses switch case to determine next query from response
     ]).then(function (response) {
         const action = response.action;
         switch (action) {
@@ -68,7 +69,7 @@ function inquirerAction() {
         }
     });
 }
-
+// function will start if user wants to alter database in some way and asks user in what way it should be altered
 function alterData() {
     inquirer.prompt(
         {
