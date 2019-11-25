@@ -82,7 +82,23 @@ function inquirerAction() {
 }
 
 function viewAll(type) {
-sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", inquirerAction);
+    switch (type) {
+        
+        case 'employ':
+            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;");
+            break;
+
+        case 'depart':
+            sqlQuery("SELECT * FROM employee");
+            break;
+
+        case 'roles':
+            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;");
+            break;
+    
+        default:
+            break;
+    }
 }
 
 function add() {
@@ -97,12 +113,12 @@ function update(type) {
     
 }
 
-function sqlQuery(request, cb) {
+function sqlQuery(request) {
     connection.query(request, function(err, res) {
         if (err) throw err;
         console.log('\n');
         console.table(res);
-        cb();
+        inquirerAction();
       });
 }
 // inquirer.prompt([
