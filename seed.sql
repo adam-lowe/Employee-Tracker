@@ -80,5 +80,3 @@ VALUES ("Sarah", "Lourd", "Legal Team Lead");
 
 -- DELETE FROM music 
 -- WHERE artist = 'the Grump';
-
-SELECT * FROM employee
