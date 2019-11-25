@@ -60,7 +60,7 @@ function inquirerAction() {
                 viewData('roles');
                 break;
             case "Alter Employee List":
-                alterDataInit();
+                alterData();
                 break;
             default:
                 console.log("Error: Can't Determine Choice");
@@ -69,7 +69,7 @@ function inquirerAction() {
     });
 }
 
-function alterDataInit() {
+function alterData() {
     inquirer.prompt(
         {
             type: "list",
@@ -87,16 +87,16 @@ function alterDataInit() {
 
        switch (alterType) {
         case "Remove Employee":
-            alterData('remove');
+            
             break;
         case "Add Employee":
-            alterData('add');
+            
             break;
         case "Update Employee's Role":
-            alterData('updateRole');
+            
             break;
         case "Update Employee's Manager":
-            alterData('updateManager');
+            
             break;
         default:
             console.log("Error: Can't Determine Choice");
@@ -104,27 +104,6 @@ function alterDataInit() {
     }
         }
     );
-}
-
-
-function viewData(type) {
-    switch (type) {
-
-        case 'employ':
-            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
-            break;
-
-        case 'depart':
-            sqlQuery("SELECT * FROM department", true, inquirerAction);
-            break;
-
-        case 'roles':
-            sqlQuery("SELECT * FROM role", true, inquirerAction);
-            break;
-
-        default:
-            break;
-    }
 }
 
 function alterData(type) {
