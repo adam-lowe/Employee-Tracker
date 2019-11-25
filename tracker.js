@@ -31,10 +31,10 @@ console.log(
     "██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║       \n",
      "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝       \n");
 
-inquirerAction();
+inquirerInit();
 
 
-function inquirerAction() {
+function inquirerInit() {
     inquirer.prompt([
         {
             type: "list",
@@ -42,8 +42,8 @@ function inquirerAction() {
             name: "action",
             choices: [
                 "View all employees",
-                "View all employees By department",
-                "View all employees By manager",
+                "View all departments",
+                "View all roles",
                 "Add Employee",
                 "Remove Employee",
                 "Update Employee Role",
@@ -52,6 +52,7 @@ function inquirerAction() {
         }
     ]).then(function (response) {
         const action = response.action;
+        if (action === "Add Employee" || "Remove Employee") {inquirerEmploy();}
         switch (action) {
             case "View all employees":
                 viewAll('employ');
@@ -80,6 +81,22 @@ function inquirerAction() {
         }
     });
 }
+inquirer.prompt([
+    {
+        type: "list",
+        message: "What would you like to do?",
+        name: "action",
+        choices: [
+            "View all employees",
+            "View all departments",
+            "View all roles",
+            "Add Employee",
+            "Remove Employee",
+            "Update Employee Role",
+            "Update Employee Manager"
+        ]
+    }
+]);
 
 function viewAll(type) {
     switch (type) {
@@ -110,7 +127,19 @@ function remove() {
 }
 
 function update(type) {
-    
+    switch (type) {
+        
+        case 'role':
+            sqlQuery("-->SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;");
+            break;
+
+        case 'manage':
+            sqlQuery("--->SELECT * FROM department");
+            break;
+
+        default:
+            break;
+    }
 }
 
 function sqlQuery(request) {
@@ -118,7 +147,7 @@ function sqlQuery(request) {
         if (err) throw err;
         console.log('\n');
         console.table(res);
-        inquirerAction();
+        inquirerInit();
       });
 }
 // inquirer.prompt([
