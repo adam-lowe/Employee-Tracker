@@ -89,11 +89,11 @@ function viewAll(type) {
             break;
 
         case 'depart':
-            sqlQuery("SELECT * FROM employee");
+            sqlQuery("SELECT * FROM department");
             break;
 
         case 'roles':
-            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;");
+            sqlQuery("SELECT * FROM role");
             break;
     
         default:
