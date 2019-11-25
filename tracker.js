@@ -51,16 +51,16 @@ function inquirerAction() {
         const action = response.action;
         switch (action) {
             case "View all employees":
-                viewAll('employ');
+                viewData('employ');
                 break;
             case "View all departments":
-                viewAll('depart');
+                viewData('depart');
                 break;
             case "View all roles":
-                viewAll('roles');
+                viewData('roles');
                 break;
             case "Alter Employee List":
-                add();
+                alterData();
                 break;
             default:
                 console.log("Error: Can't Determine Choice");
@@ -69,7 +69,7 @@ function inquirerAction() {
     });
 }
 
-function viewAll(type) {
+function viewData(type) {
     switch (type) {
         
         case 'employ':
@@ -93,7 +93,7 @@ function sqlQuery(request, log, cb) {
     connection.query(request, function(err, res) {
         if (err) throw err;
         console.log('\n');
-        if (log) {console.table(res)}
+        if (log) {console.table(res);}
         if (cb) {cb();}
         return res;
       });
