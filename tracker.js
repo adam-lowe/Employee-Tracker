@@ -85,9 +85,21 @@ function alterData() {
         }
     ).then(function (response) {
        const alterType = response.alter;
+       let employArr = [];
+       employArr = sqlQuery("SELECT first_name,last_name FROM employee", false, () => console.log(res));
+        console.log(employArr);
 
        switch (alterType) {
         case "Remove Employee":
+            sqlQuery("SELECT first_name,last_name FROM employee");
+            inquirer.prompt(
+                {
+                    type: "list",
+                    message: "Which employee would you like to remove?",
+                    name: "removeWhich",
+                    choices: employees
+                }
+            );
             break;
         case "Add Employee":
             break;
@@ -106,7 +118,7 @@ function alterData() {
 function sqlQuery(request, log, cb) {
     connection.query(request, function (err, res) {
         if (err) throw err;
-        console.log('\n');
+        console.log('Connection Made!');
         if (log) { console.table(res); }
         if (cb) { cb(); }
         return res;
