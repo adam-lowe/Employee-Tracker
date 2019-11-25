@@ -21,21 +21,44 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId + "\n");
 });
 
+console.log(
+" ███████╗███╗   ███╗██████╗ ██╗      ██████╗ ██╗   ██╗███████╗███████╗       \n",
+    "██╔════╝████╗ ████║██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝██╔════╝██╔════╝        \n",
+    "█████╗  ██╔████╔██║██████╔╝██║     ██║   ██║ ╚████╔╝ █████╗  █████╗          \n",
+    "██╔══╝  ██║╚██╔╝██║██╔═══╝ ██║     ██║   ██║  ╚██╔╝  ██╔══╝  ██╔══╝          \n",
+    "███████╗██║ ╚═╝ ██║██║     ███████╗╚██████╔╝   ██║   ███████╗███████╗        \n",
+    "╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝        \n",
+                                                                                 "\n",
+     "███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗        \n",
+    "████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗       \n",
+    "██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝       \n",
+    "██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗       \n",
+    "██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║       \n",
+     "╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝       \n");
+
 inquirer.prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is your name?"
-      },
-      {
-        type: "input",
-        name: "location",
-        message: "Where are you from?"
-      },
-      {
-        type: "input",
-        name: "hobby",
-        message: "What is your favorite hobby?"
-      },
-      
-    ]);
+{
+    type: "input",
+    name: "gituser",
+    message: "What is your github username?"
+},
+{
+    type: "list",
+    message: "What is your favorite color?",
+    name: "color",
+    choices: [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "brown",
+    "purple",
+    "blue"
+    ]
+}
+]).then(function (response) {
+const username = response.gituser;
+const favcolor = response.color;
+});
+// const queryUrl = `https://api.github.com/users/${username}`;
+// axios.get(queryUrl)
