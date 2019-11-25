@@ -8,7 +8,7 @@ CREATE TABLE employee (
   id INT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  role_id INT,
+  role VARCHAR(30),
   manager VARCHAR(30),
   PRIMARY KEY (id)
 );
@@ -56,22 +56,22 @@ VALUES ("Accountant", "Finance");
 INSERT INTO role (title, department)
 VALUES ("Legal Team Lead", "Legal");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("John", "Doe", "Sales Lead", "Sales", 100000, "Ashley Rodriguez");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("Mike", "Chan", "Salesperson", "Sales", 80000, "Ashley Rodriguez");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("Ashley", "Rodriguez", "Lead Engineer", "Engineering", 150000, "Ashley Rodriguez");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("Kevin", "Tupik", "Software Engineer", "Engineering", 120000, "Ashley Rodriguez");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("Malia", "Brown", "Accountant", "Finance", 125000, "Ashley Rodriguez");
 
-INSERT INTO employee (first_name, last_name, title, department, salary, manager)
+INSERT INTO employee (first_name, last_name, role, department, salary, manager)
 VALUES ("Sarah", "Lourd", "Legal Team Lead", "Legal", 250000, "Ashley Rodriguez");
 
 -- UPDATE music 
