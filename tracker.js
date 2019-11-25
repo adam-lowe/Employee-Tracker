@@ -127,6 +127,26 @@ function viewData(type) {
     }
 }
 
+function alterData(type) {
+    switch (type) {
+
+        case 'employ':
+            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
+            break;
+
+        case 'depart':
+            sqlQuery("SELECT * FROM department", true, inquirerAction);
+            break;
+
+        case 'roles':
+            sqlQuery("SELECT * FROM role", true, inquirerAction);
+            break;
+
+        default:
+            break;
+    }
+}
+
 function sqlQuery(request, log, cb) {
     connection.query(request, function (err, res) {
         if (err) throw err;
