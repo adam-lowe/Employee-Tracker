@@ -42,12 +42,9 @@ function inquirerAction() {
             name: "action",
             choices: [
                 "View all employees",
-                "View all employees By department",
-                "View all employees By manager",
-                "Add Employee",
-                "Remove Employee",
-                "Update Employee Role",
-                "Update Employee Manager"
+                "View all departments",
+                "View all roles",
+                "Alter Employee List"
             ]
         }
     ]).then(function (response) {
@@ -62,17 +59,8 @@ function inquirerAction() {
             case "View all roles":
                 viewAll('roles');
                 break;
-            case "Add Employee":
+            case "Alter Employee List":
                 add();
-                break;
-            case "Remove Employee":
-                remove();
-                break;
-            case "Update Employee Role":
-                update('role');
-                break;
-            case "Update Employee Manager":
-                update('manage');
                 break;
             default:
                 console.log("Error: Can't Determine Choice");
@@ -85,15 +73,15 @@ function viewAll(type) {
     switch (type) {
         
         case 'employ':
-            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", inquirerAction);
+            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
             break;
 
         case 'depart':
-            sqlQuery("SELECT * FROM department", inquirerAction);
+            sqlQuery("SELECT * FROM department", true, inquirerAction);
             break;
 
         case 'roles':
-            sqlQuery("SELECT * FROM role", inquirerAction);
+            sqlQuery("SELECT * FROM role", true, inquirerAction);
             break;
     
         default:
@@ -101,10 +89,11 @@ function viewAll(type) {
     }
 }
 
-function sqlQuery(request, cb) {
+function sqlQuery(request, log, cb) {
     connection.query(request, function(err, res) {
         if (err) throw err;
         console.log('\n');
+        if (log) {console.table(res)}
         if (cb) {cb();}
         return res;
       });
