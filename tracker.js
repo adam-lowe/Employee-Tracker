@@ -51,13 +51,13 @@ function inquirerAction() {
         const action = response.action;
         switch (action) {
             case "View all employees":
-                viewData('employ');
+                sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
                 break;
             case "View all departments":
-                viewData('depart');
+                sqlQuery("SELECT * FROM department", true, inquirerAction);
                 break;
             case "View all roles":
-                viewData('roles');
+                sqlQuery("SELECT * FROM role", true, inquirerAction);
                 break;
             case "Alter Employee List":
                 alterData();
@@ -87,16 +87,12 @@ function alterData() {
 
        switch (alterType) {
         case "Remove Employee":
-            
             break;
         case "Add Employee":
-            
             break;
         case "Update Employee's Role":
-            
             break;
         case "Update Employee's Manager":
-            
             break;
         default:
             console.log("Error: Can't Determine Choice");
@@ -104,26 +100,6 @@ function alterData() {
     }
         }
     );
-}
-
-function alterData(type) {
-    switch (type) {
-
-        case 'employ':
-            sqlQuery("SELECT employee.id,first_name,last_name,title,department,manager FROM employee INNER JOIN role ON employee.role = role.title;", true, inquirerAction);
-            break;
-
-        case 'depart':
-            sqlQuery("SELECT * FROM department", true, inquirerAction);
-            break;
-
-        case 'roles':
-            sqlQuery("SELECT * FROM role", true, inquirerAction);
-            break;
-
-        default:
-            break;
-    }
 }
 
 function sqlQuery(request, log, cb) {
